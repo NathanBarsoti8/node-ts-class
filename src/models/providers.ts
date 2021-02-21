@@ -1,5 +1,8 @@
 import mongoose, { Schema } from 'mongoose';
 import IProviders from '../interfaces/providers';
+import autoIncrement from 'mongoose-auto-increment';
+
+autoIncrement.initialize(mongoose.connection);
 
 const providers: Schema = new Schema({
     parentCnpjNumber: { type: String, required: true },
@@ -39,5 +42,12 @@ const providers: Schema = new Schema({
 //     companyId: { type: String, required: true },
 //     companyName: { type: String, required: true }
 // });
+
+providers.plugin(autoIncrement.plugin, {
+    model: 'providers',
+    field: '_id',
+    startAt: 1,
+    incrementBy: 1
+});
 
 export default mongoose.model<IProviders>('providers', providers);
