@@ -22,10 +22,10 @@ const config = (env: string, app: any) => {
             useCreateIndex: true
         })
         .then(() => {
-            logging.info('DB', 'database successfully connected');
+            logging.info('DATABASE', 'database successfully connected');
         })
         .catch((err) => {
-            logging.error('DB', err.message, err);
+            logging.error('DATABASE', err.message, err);
         });
 };
 
