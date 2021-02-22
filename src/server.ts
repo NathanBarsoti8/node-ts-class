@@ -1,10 +1,9 @@
 import express from 'express';
-import path from 'path';
 import logging from './config/logging';
 import config from './config/env';
 import routes from './index';
 
-const namespace = 'PROVIDERS API';
+const namespace = 'SERVER';
 const app = express();
 
 const env = process.env.NODE_ENV || 'development';
