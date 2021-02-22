@@ -4,21 +4,24 @@ import autoIncrement from 'mongoose-auto-increment';
 
 autoIncrement.initialize(mongoose.connection);
 
-const providers: Schema = new Schema({
-    parentCnpjNumber: { type: String, required: true },
-    cnpjNumber: { type: String, required: true },
-    providerName: { type: String, required: true }
-    // fantasyName: { type: String, required: true },
-    // stateRegistration: { type: String, required: false },
-    // municipalRegistration: { type: String, required: false },
-    // addresses: [address],
-    // contacts: [contact],
-    // companies: [company],
-    // createdAt: { type: Date, required: false },
-    // updatedAt: { type: Date, required: false },
-    // active: { type: String, required: false },
-    // skusCount: { type: String, required: false }
-});
+const providers: Schema = new Schema(
+    {
+        parentCnpjNumber: { type: String, required: true },
+        cnpjNumber: { type: String, required: true },
+        providerName: { type: String, required: true }
+        // fantasyName: { type: String, required: true },
+        // stateRegistration: { type: String, required: false },
+        // municipalRegistration: { type: String, required: false },
+        // addresses: [address],
+        // contacts: [contact],
+        // companies: [company],
+        // createdAt: { type: Date, required: false },
+        // updatedAt: { type: Date, required: false },
+        // active: { type: String, required: false },
+        // skusCount: { type: String, required: false }
+    },
+    { collection: 'providers', versionKey: false }
+);
 
 // const address: Schema = new Schema({
 //     typeAddress: { type: String, required: true },
