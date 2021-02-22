@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
-import IProviders from '../interfaces/providers';
 import autoIncrement from 'mongoose-auto-increment';
+import mongoosePaginate from 'mongoose-paginate';
+import IProviders from '../interfaces/providers';
 
 autoIncrement.initialize(mongoose.connection);
 
@@ -52,5 +53,7 @@ providers.plugin(autoIncrement.plugin, {
     startAt: 1,
     incrementBy: 1
 });
+
+providers.plugin(mongoosePaginate);
 
 export default mongoose.model<IProviders>('providers', providers);
