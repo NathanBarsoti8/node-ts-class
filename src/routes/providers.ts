@@ -6,5 +6,8 @@ const router = express.Router();
 
 router.get('', listAll);
 router.post('', create);
+// router.get('/:providerId', listOne);
+// router.put('/:providerId', update);
+// router.delete('/:providerId', delete);
 
 export default router;
