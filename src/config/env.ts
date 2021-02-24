@@ -16,7 +16,7 @@ const config = (env: string, app: Express) => {
 
     mongoose
         .connect('mongodb://localhost:27017/db_providers', {
-            useFindAndModify: true,
+            useFindAndModify: false,
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true
