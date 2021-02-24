@@ -38,6 +38,33 @@ class ProviderRepository {
 
         return response;
     }
+
+    async delete(id: string | number): Promise<IDefaultResponse> {
+        const response = {} as IDefaultResponse;
+
+        const provider = await Providers.findById(id);
+
+        if (provider) {
+            provider.active = 'false';
+
+            provider
+                .save()
+                .then(() => {
+                    response.status = 200;
+                    response.message = 'providers successfully deleted';
+                    response.obj = provider;
+                })
+                .catch((err) => {
+                    response.status = 400;
+                    response.message = err.message;
+                });
+        } else {
+            response.status = 404;
+            response.message = 'not found results according this id';
+        }
+
+        return response;
+    }
 }
 
 export default ProviderRepository;
