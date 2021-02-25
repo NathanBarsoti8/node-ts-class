@@ -1,6 +1,7 @@
 import IProviders from '../interfaces/providers';
 import IDefaultResponse from '../interfaces/defaultResponse';
 import Providers from '../models/providers';
+import STATUS from '../enum/httpStatusCode';
 
 class ProviderRepository {
     constructor() {}
@@ -10,12 +11,12 @@ class ProviderRepository {
 
         await Providers.create(data)
             .then((provider) => {
-                response.status = 201;
+                response.status = STATUS.CREATED;
                 response.message = 'provider successfully created';
                 response.obj = provider;
             })
             .catch((err) => {
-                response.status = 400;
+                response.status = STATUS.BAD_REQUEST;
                 response.message = err.message;
             });
 
@@ -28,11 +29,11 @@ class ProviderRepository {
         const provider = await Providers.findById(id);
 
         if (provider) {
-            response.status = 200;
+            response.status = STATUS.OK;
             response.message = '';
             response.obj = provider;
         } else {
-            response.status = 404;
+            response.status = STATUS.NOT_FOUND;
             response.message = 'not found results according this id';
         }
 
@@ -50,20 +51,33 @@ class ProviderRepository {
             provider
                 .save()
                 .then(() => {
-                    response.status = 200;
+                    response.status = STATUS.OK;
                     response.message = 'providers successfully deleted';
                     response.obj = provider;
                 })
                 .catch((err) => {
-                    response.status = 400;
+                    response.status = STATUS.BAD_REQUEST;
                     response.message = err.message;
                 });
         } else {
-            response.status = 404;
+            response.status = STATUS.NOT_FOUND;
             response.message = 'not found results according this id';
         }
 
         return response;
+    }
+
+    async cnpjExists(cnpj: string): Promise<boolean> {
+        const provider = await Providers.find({
+            cnpjNumber: cnpj
+        });
+
+        if (provider) return true;
+        else return false;
+    }
+
+    async associateCompanyInProvider(): Promise<any> {
+        throw new Error('method not implemented');
     }
 }
 
