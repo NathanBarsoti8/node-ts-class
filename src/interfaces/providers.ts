@@ -4,13 +4,13 @@ interface IProviders extends Document {
     parentCnpjNumber: string;
     cnpjNumber: string;
     providerName: string;
-    // fantasyName: string;
-    // stateRegistration: string;
-    // municipalRegistration: string;
+    fantasyName: string;
+    stateRegistration: string;
+    municipalRegistration: string;
     // addresses: Array<IAdress>;
     // contacts: Array<IContact>;
     // companies: Array<ICompany>;
-    // active: string;
+    active: string;
     // skusCount: string;
     // createdAt: Date;
     // updatedAt: Date;
